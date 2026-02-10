@@ -1,3 +1,34 @@
+# MERN Login & Signup App
+
+A simple **Login and Signup** web application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js).  
+This project demonstrates basic user registration and login functionality without advanced authentication libraries.
+
+---
+
+## 🚀 Features
+
+- User Signup (stores data in MongoDB)
+- User Login (basic validation)
+- Simple frontend with React
+- Express backend with REST API
+- MongoDB for data persistence
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (Mongoose)
+
+---
+
+## 📂 Project Structure
+
+login-signup-app/ │── # React app │ ├── src/ │ │ ├── components/ # Login & Signup components │ │ ├── pages/ # Home, Dashboard │ │ └── App.js │ └── README.md
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
