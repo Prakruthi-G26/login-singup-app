@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo-img {
+    height: 50px; 
+    width: auto;
+}
+
+.header-text {
+    text-align: center;
+    flex-grow: 1; 
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.header-text h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #555;
+}
