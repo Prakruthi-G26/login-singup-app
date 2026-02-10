@@ -16,13 +16,13 @@ function Signup() {
                 email, password
             })
             .then(res=>{
-                if(res.data==="exist"){
+                if(res.data.status==="exist"){
                     alert("user already exists")
                 }
-                else if(res.data==="passwordconstraints"){
+                else if(res.data.status==="passwordconstraints"){
                     alert("Password must be at least 8 characters long and include atleast 1 uppercase, lowercase, number, and special character.")
                 }
-                else if(res.data==="notexist"){
+                else if(res.data.status==="notexist"){
                     history('/home',{state:{id:email}})
                 }
             })

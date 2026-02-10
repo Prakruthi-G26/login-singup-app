@@ -17,13 +17,15 @@ function Login() {
                 email, password
             })
             .then(res=>{
-                if(res.data==="exist"){
+                if(res.data.status==="exist"){
+                    const token = res.data.token;
+                    localStorage.setItem("token", token);
                     history('/home',{state:{id:email}})
                 }
-                else if (res.data === "wrongpassword") {
+                else if (res.data.status === "wrongpassword") {
                     alert("Incorrect password. Please enter correct details.");
                 }
-                else if(res.data==="notexist"){
+                else if(res.data.status === "notexist"){
                     alert("user have not registered")
                 }
             })

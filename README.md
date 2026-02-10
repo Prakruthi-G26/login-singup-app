@@ -1,14 +1,15 @@
 # MERN Login & Signup App
 
 A simple **Login and Signup** web application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js).  
-This project demonstrates basic user registration and login functionality without advanced authentication libraries.
+This project demonstrates basic user authentication with JWT and password hashing.
 
 ---
 
 ## 🚀 Features
 
-- User Signup (stores data in MongoDB)
-- User Login (basic validation)
+- User Signup with validation
+- User Login with JWT authentication
+- Password hashing using bcrypt
 - Simple frontend with React
 - Express backend with REST API
 - MongoDB for data persistence
@@ -17,9 +18,10 @@ This project demonstrates basic user registration and login functionality withou
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React.js
+- **Frontend:** React.js, Axios
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB (Mongoose)
+- **Authentication:** JWT, bcrypt
 
 ---
 
@@ -28,6 +30,30 @@ This project demonstrates basic user registration and login functionality withou
 login-signup-app/ │── # React app │ ├── src/ │ │ ├── components/ # Login & Signup components │ │ ├── pages/ # Home, Dashboard │ │ └── App.js │ └── README.md
 
 ---
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+
+````bash
+git clone https://github.com/your-username/login-signup-app.git
+cd login-signup-app
+
+### 2. backend setup
+```bash
+npm install
+
+# start backend server in terminal with project directory
+nodemon app.js
+
+### 3. frontend setup
+```bash
+npm install
+
+#split the terminal and start frontend
+npm start
 
 # Getting Started with Create React App
 
@@ -69,3 +95,4 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+````

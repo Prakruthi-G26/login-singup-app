@@ -1,6 +1,8 @@
 const express = require("express");
 const collection = require('./mongo')
 const cors = require("cors")
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const app =express();
 app.use(express.json());
@@ -13,32 +15,29 @@ app.post("/",async(req,res)=>{
     const{email, password} = req.body
 
     try{
-        const check = await collection.findOne({email:email})
+        const check = await collection.findOne({email})
 
-        if (check) {
-            if (check.password === password) {
-                res.json("exist");
-            } else {
-                res.json("wrongpassword");
-            }
-        } else {
-            res.json("notexist");
+        if (!check) {
+            return res.json({ status: "notexist" });
         }
+
+        const isMatch = await bcrypt.compare(password, check.password);
+        if (!isMatch) return res.json({ status: "wrongpassword" });
+        const token = jwt.sign({ id: check._id, email: check.email }, "your-secret-jwt-key", { expiresIn: "1d" });
+        res.json({ status: "exist", token });
     }
     catch(e){
-        res.json("notexist")
+        res.json({status:"notexist"})
     }
 })
 
 app.post("/signup",async(req,res)=>{
     const{email,password}=req.body
 
-    
-
     try{
         const check = await collection.findOne({email:email})
         if(check){
-            res.json("exist")
+            res.json({status:"exist"})
         }
         else{
             const minLength = 8;
@@ -48,16 +47,16 @@ app.post("/signup",async(req,res)=>{
             const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
 
             if (password.length < minLength || !hasUpperCase.test(password) || !hasLowerCase.test(password) || !hasNumber.test(password) || !hasSpecialChar.test(password)) {
-                return res.json("passwordconstraints")
+                return res.json({status:"passwordconstraints"})
             }
-            const data={ email:email, password:password}
-            res.json("notexist")
-            await collection.insertMany([data])
+            res.json({status:"notexist"})
+            const hashedPassword = await bcrypt.hash(password, 10);
+            await collection.create({ email, password: hashedPassword });
         }
     }
     catch(e){
         console.log(e)
-        res.json("notexist")
+        res.json({status:"notexist"})
     }
     
 })
